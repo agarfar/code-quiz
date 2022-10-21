@@ -74,6 +74,7 @@ var finishBox = document.querySelector(".finish-box");
 var timer = document.querySelector("#timer")
 var questionsContainer = document.querySelector(".questions");
 var validText = document.querySelector(".validity-text");
+var validTextBorder = document.querySelector(".validity")
 var finalScore = document.querySelector(".final-score")
 var currentQuestion = 0;
 var secondsLeft = 45;
@@ -99,7 +100,7 @@ function setTime() {                          //Function for timer
 startButton.addEventListener("click", function () {
   startBox.classList.add("hidden");
   quizBox.classList.remove("hidden");
-  setTime();
+  // setTime();
 
 
 });
@@ -116,11 +117,13 @@ questionsContainer.addEventListener("click", function (event) {
     //TODO: Check validity and save to validity-text
     if (event.target.innerText === questions[currentQuestion].answer){
       console.log('correct answer');
+      validTextBorder.classList.add('validity-result');
       validText.innerText = 'Correct!';
       currentQuestion++;
     }
     else if(event.target !== questions[currentQuestion].answer){
       console.log('incorrect answer');
+      validTextBorder.classList.add('validity-result');
       validText.innerText = 'Incorrect!';
       secondsLeft = secondsLeft - 10;
       currentQuestion++;
@@ -137,9 +140,6 @@ questionsContainer.addEventListener("click", function (event) {
     // currentQuestion++;
   }
 });
-
-
-
 
 
 function renderQuestion() {
