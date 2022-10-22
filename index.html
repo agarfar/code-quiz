@@ -40,7 +40,6 @@
                 <li class="answer-2 purple"></li>
                 <li class="answer-3 purple"></li>
                 <li class="answer-4 purple"></li>
-
             </ol>
         </div>
         <div class="validity">
@@ -49,21 +48,25 @@
     </div>
     <div class="finish-box hidden">
         <h1 class="finish-title">All Done!</h1>
-        <div class="final-score"></div>
+        <form class="final-score"></form>
+        <h4>Final Score: </h4>
 
-        <div class="startButton">
-            <button class="start">Start</button>
+        <div class="input-layout">
+            <label for="initials">Initals:</label>
+            <input class= 'initial-input' type="text" id="initials" name="initials">
         </div>
+
+        <input class="submit-button" type="submit" value="Submit" style="width: min-content;">
+        </form>
     </div>
     <div class="high-score-box hidden">
-        <h1 class="titleQuestion">Coding Quiz Challenge</h1>
-        <div class="rules">
-            Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
-            answers will penalize your score time by ten seconds!
-        </div>
+        <h1 class="high-score-title">High Scores</h1>
+        <ol class="high-score-list">
 
-        <div class="startButton">
-            <button class="start">Start</button>
+        </ol>
+        <div class="options">
+            <button class = "back">Go Back</button>
+            <button class = "clear">Clear High Scores</button>
         </div>
     </div>
 

@@ -12,17 +12,12 @@ header {
     padding-right: 5px;
 }
 
-.start-box,
-.quiz-box,
-.finish-box {
+.start-box{
     display: flex;
     flex-flow: column;
-    /* justify-content: center; */
-    /* align-items: center; */
+    align-items: center;
     margin: auto;
-    /* width: 50%; */
-    /* height: 50%; */
-    border: 2px solid rgb(0, 41, 128);
+    /* border: 2px solid rgb(0, 41, 128); */
     padding: 10px;
     position: absolute;
     top: 45%;
@@ -30,6 +25,37 @@ header {
     transform: translate(-50%, -50%);
 }
 
+.quiz-box {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    /* width: 50%; */
+    /* height: 50%; */
+    /* border: 2px solid rgb(0, 41, 128); */
+    padding: 10px;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.finish-box {
+    display: flex;
+    flex-flow: column;
+    margin: auto;
+    width: 50%;
+    /* border: 2px solid rgb(0, 41, 128); */
+    padding: 10px;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.rules{
+    margin-bottom: 25px;
+    text-align: center;
+}
 
 .questions{
     counter-reset: myOrderedListItemsCounter;
@@ -67,13 +93,39 @@ header {
     font-style: italic;
     color: rgba(141, 134, 134 );
     padding-top: 2px;
-    /* border */
 }
 
 .validity-result{
     border-top: 1px solid rgba(141, 134, 134);
 }
 
+.input-layout{
+    display: flex;
+    flex-flow: row wrap;
+    padding-bottom: 15px;
+}
+
+h4{
+    margin-top: 10px;
+}
+
+.initial-input{
+    margin-left: 4px;
+    width: 20%;
+}
+
+.submit-button{
+    background-color: purple;
+    color: white;
+    border-style: none;
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.options{
+    display: flex;
+    justify-content: space-between;
+}
 
 .hidden {
     display: none;
