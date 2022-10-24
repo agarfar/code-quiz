@@ -42,7 +42,7 @@ var questions = [
   },
   {
     question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-    answer: "console.log",
+    answer: "console.log()",
     options: [
       "for loops",
       "terminal/bash",
@@ -76,6 +76,10 @@ var validTextBorder = document.querySelector(".validity");
 var finalScore = document.querySelector(".final-score");
 var initialInput = document.querySelector(".initial-input");
 var submitButton = document.querySelector(".submit-button");
+var highScores = document.querySelector(".high-score-list");
+var goBack = document.querySelector(".back");
+var clearScores = document.querySelector(".clear");
+var scoreOutput = document.querySelector(".score-output");
 var secondsLeft = 45;
 var currentQuestion = 0;
 var initialScoreArray;
@@ -84,7 +88,6 @@ var score;
 
 function setTime() {                          //Function for timer
   var timerInterval = setInterval(function () {
-
     secondsLeft--;
     timer.textContent = "Time: " + secondsLeft;
     if (secondsLeft === 0) {
@@ -92,13 +95,22 @@ function setTime() {                          //Function for timer
       score = 0;
       quizBox.classList.add("hidden");
       finishBox.classList.remove("hidden");
+      scoreOutput.textContent = "Final Score: 0";
     }
-    else if (secondsLeft <= 0) {
+    else if (secondsLeft < 0) {
+      clearInterval(timerInterval);
       secondsLeft = 0;
       score = 0;
       timer.textContent = "Time: " + secondsLeft;
       quizBox.classList.add("hidden");
       finishBox.classList.remove("hidden");
+      scoreOutput.textContent = "Final Score: 0";
+    }
+    else if (currentQuestion === questions.length) {
+      clearInterval(timerInterval);
+      timer.textContent = "Time: " + secondsLeft;
+      score = secondsLeft;
+      scoreOutput.textContent = "Final Score: " + score;
     }
   }, 1000);
 }
@@ -106,7 +118,7 @@ function setTime() {                          //Function for timer
 startButton.addEventListener("click", function () {
   startBox.classList.add("hidden");
   quizBox.classList.remove("hidden");
-  // setTime();
+  setTime();
 });
 
 questionsContainer.addEventListener("click", function (event) {
@@ -131,17 +143,17 @@ questionsContainer.addEventListener("click", function (event) {
       currentQuestion++;
     }
 
-    if (currentQuestion != questions.length - 1) { // 0v2 1v2 2v2
-      // currentQuestion++;
+    if (currentQuestion != questions.length) { // 0v2 1v2 2v2
       renderQuestion();
     }
     else {
       score = secondsLeft;
+      timer.textContent = "Timer: " + score;
       console.log(score)
       quizBox.classList.add("hidden");
       finishBox.classList.remove("hidden");
+      scoreOutput.textContent = "Final Score: " + score;
     }
-    // currentQuestion++;
   }
 });
 
@@ -168,22 +180,53 @@ function logScore(event) {
   console.log("this is the current highScoreArray: " + highScoreArray);
   // add json string of high score array to local storage
   localStorage.setItem("highScore", JSON.stringify(highScoreArray));
-  //  work on renderHighScores
+  renderHighScores();
 
   // const highScores = JSON.parse(highScoreString) ?? []; --> example that acccounts for empty array return
 }
 
 // Add listener to submit element
+
+
 submitButton.addEventListener("click", logScore);
 
 function renderHighScores() {
   // hide finish-box, unhide high-score box
+  startBox.classList.add("hidden");
+  quizBox.classList.add("hidden");
   finishBox.classList.add("hidden");
-  var highScoreList = JSON.parse(localStorage.getItem("highScore"));
-  // write for loop to loop thru high scores and add concatenated index values of each item 
-  // into li elements within ordered list
+  highScoreBox.classList.remove('hidden');
+  highScoreLink.classList.add('hidden');
+  timer.classList.add('hidden');
 
+  var highScoreList = JSON.parse(localStorage.getItem("highScore"));
+  highScoreList.sort(function (a, b) { return b[1] - a[1] });
+  for (i = 0; i < highScoreList.length; i++) {
+    var user = highScoreList[i];
+    var listEl = document.createElement('li');
+    highScores.appendChild(listEl);
+    listEl.textContent = user[0] + ' - ' + user[1];
+  }
 }
 
 highScoreLink.addEventListener("click", renderHighScores);
-// renderHighScores();
+
+goBack.addEventListener('click', function(){
+  startBox.classList.remove('hidden');
+  highScoreBox.classList.add('hidden');
+  highScoreLink.classList.remove('hidden');
+  timer.classList.remove('hidden');
+  highScores.innerHTML = "";
+  timer.textContent = 'Time: ';
+  currentQuestion = 0;
+  secondsLeft = 45;
+  validTextBorder.classList.remove('validity-result');
+  validText.innerText = '';
+  renderQuestion();
+})
+
+clearScores.addEventListener('click', function(){
+localStorage.clear();
+highScores.innerHTML = "";
+
+})
