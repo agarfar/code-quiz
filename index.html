@@ -1,6 +1,4 @@
 <!DOCTYPE html>
-<!-- Created By CodingNepal - www.codingnepalweb.com -->
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -11,6 +9,7 @@
 </head>
 
 <body>
+    <!-- Header element with High Scores link and Timer -->
     <header>
         <li id="high-score">
             High Scores
@@ -20,21 +19,23 @@
             Time:
         </li>
     </header>
-
+    <!-- Start Page -->
     <div class="start-box">
         <h1 class="titleQuestion">Coding Quiz Challenge</h1>
         <div class="rules">
             Try to answer the following code-related questions within the time limit. Keep in mind that incorrect
             answers will penalize your score time by ten seconds!
         </div>
-
+        <!-- Start Button -->
         <div class="startButton">
             <button class="start">Start</button>
         </div>
     </div>
+    <!-- Quiz Section -->
     <div class="quiz-box hidden">
         <h1 class="question-title"></h1>
         <div class="question-layout">
+            <!-- Answer Choices -->
             <ol class="questions">
                 <li class="answer-1 purple"></li>
                 <li class="answer-2 purple"></li>
@@ -46,27 +47,30 @@
             <span class="validity-text"></span>
         </div>
     </div>
+    <!-- Finish Page -->
     <div class="finish-box hidden">
         <h1 class="finish-title">All Done!</h1>
+        <!-- User Inputs -->
         <form class="final-score"></form>
-        <h4 class = "score-output">Final Score: </h4>
-
+        <h4 class="score-output">Final Score: </h4>
         <div class="input-layout">
             <label for="initials">Initals:</label>
-            <input class= 'initial-input' type="text" id="initials" name="initials">
+            <input class='initial-input' type="text" id="initials" name="initials">
         </div>
-
+        <!-- Submit Button -->
         <input class="submit-button" type="submit" value="Submit" style="width: min-content;">
         </form>
     </div>
+    <!-- High Score Page -->
     <div class="high-score-box hidden">
         <h1 class="high-score-title">High Scores</h1>
         <ol class="high-score-list">
 
         </ol>
+        <!-- Go Back and Clear High Scores Buttons -->
         <div class="options">
-            <button class = "back">Go Back</button>
-            <button class = "clear">Clear High Scores</button>
+            <button class="back">Go Back</button>
+            <button class="clear">Clear High Scores</button>
         </div>
     </div>
 

@@ -1,4 +1,4 @@
-// creating an array and passing the number, questions, options, and answers
+// Array of question objects
 var questions = [
   {
     question: "Commonly used data types do not include:",
@@ -62,7 +62,7 @@ var questions = [
   // },
 ];
 
-//selecting all required elements
+//Sets element query selections and defines variables
 var startButton = document.querySelector(".start");
 var startBox = document.querySelector(".start-box");
 var quizBox = document.querySelector(".quiz-box");
@@ -86,7 +86,8 @@ var initialScoreArray;
 var highScoreArray;
 var score;
 
-function setTime() {                          //Function for timer
+// sets Quiz Timer
+function setTime() {                          
   var timerInterval = setInterval(function () {
     secondsLeft--;
     timer.textContent = "Time: " + secondsLeft;
@@ -115,12 +116,14 @@ function setTime() {                          //Function for timer
   }, 1000);
 }
 
+// Clicking on Start button starts quiz
 startButton.addEventListener("click", function () {
   startBox.classList.add("hidden");
   quizBox.classList.remove("hidden");
   setTime();
 });
 
+// Clicking on an answer cycles to the next question
 questionsContainer.addEventListener("click", function (event) {
 
   console.log("Clicked an answer");
@@ -128,7 +131,6 @@ questionsContainer.addEventListener("click", function (event) {
   if (event.target.matches("li")) {
     console.log(event.target.innerText);
     console.log(questions[currentQuestion].answer);
-    //TODO: Check validity and save to validity-text
     if (event.target.innerText === questions[currentQuestion].answer) {
       console.log('correct answer');
       validTextBorder.classList.add('validity-result');
@@ -157,9 +159,9 @@ questionsContainer.addEventListener("click", function (event) {
   }
 });
 
+// renders questions based on currentQuestions count
 function renderQuestion() {
-  console.log("Rendered")
-  //debugger
+  // console.log("Rendered")
   document.querySelector(".question-title").innerText = questions[currentQuestion].question;
   document.querySelector(".answer-1").innerText = questions[currentQuestion].options[0];
   document.querySelector(".answer-2").innerText = questions[currentQuestion].options[1];
@@ -169,15 +171,16 @@ function renderQuestion() {
 
 renderQuestion();
 
+// Logs user score to high score list in local storage
 function logScore(event) {
   // Prevent default action
   event.preventDefault();
-  console.log(event);
+  // console.log(event);
   initialScoreArray = [initialInput.value, score];
-  console.log("this is the initalScoreArray: " + initialScoreArray);
+  // console.log("this is the initalScoreArray: " + initialScoreArray);
   highScoreArray = JSON.parse(localStorage.getItem('highScore')) ?? [];
   highScoreArray.push(initialScoreArray);
-  console.log("this is the current highScoreArray: " + highScoreArray);
+  // console.log("this is the current highScoreArray: " + highScoreArray);
   // add json string of high score array to local storage
   localStorage.setItem("highScore", JSON.stringify(highScoreArray));
   renderHighScores();
@@ -185,11 +188,10 @@ function logScore(event) {
   // const highScores = JSON.parse(highScoreString) ?? []; --> example that acccounts for empty array return
 }
 
-// Add listener to submit element
-
-
+// Click on Submit button to log user score to local storage
 submitButton.addEventListener("click", logScore);
 
+// render the High Score page
 function renderHighScores() {
   // hide finish-box, unhide high-score box
   startBox.classList.add("hidden");
@@ -209,8 +211,10 @@ function renderHighScores() {
   }
 }
 
+// render High Score page when clicking on the link at the top of the page
 highScoreLink.addEventListener("click", renderHighScores);
 
+// Clicking the Back button takes user back to start page (user can retake quiz)
 goBack.addEventListener('click', function(){
   startBox.classList.remove('hidden');
   highScoreBox.classList.add('hidden');
@@ -225,6 +229,7 @@ goBack.addEventListener('click', function(){
   renderQuestion();
 })
 
+// Clears high scores list from local storage and display
 clearScores.addEventListener('click', function(){
 localStorage.clear();
 highScores.innerHTML = "";

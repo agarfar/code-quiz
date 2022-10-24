@@ -1,4 +1,4 @@
-# <Code Quiz>
+# Code Quiz
 
 ## Description
 
@@ -26,7 +26,7 @@ I designed an application to test user's coding knowledge using basic Javascript
 
 6. Click 'Clear High Scores' to clear all logged user scores. Click 'Go Back' to navigate to the start page.
 
-![high-score](assets/images/clear.png)
+![Clear High Scores](assets/images/clear.png)
 
 ## Credits
 
