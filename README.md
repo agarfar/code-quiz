@@ -6,7 +6,7 @@ I designed an application to test user's coding knowledge using basic Javascript
 
 ## Usage
 
-1. Access the application at the provided URL: 
+1. Access the application at the provided URL: https://agarfar.github.io/code-quiz/
 
 2. Click Start to begin the quiz:
 
